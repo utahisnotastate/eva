@@ -1,4 +1,5 @@
 import React from 'react'
+import { createRoot } from 'react-dom/client'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { blue } from '@mui/material/colors'
 import ReactDOM from 'react-dom'
@@ -13,15 +14,21 @@ const theme = createTheme({
 		},
 	},
 })
-
-ReactDOM.render(
+const container = document.getElementById('root')
+const root = createRoot(container)
+root.render(
+	<ThemeProvider theme={theme}>
+		<Eva />
+	</ThemeProvider>,
+)
+/*ReactDOM.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<Eva />
 		</ThemeProvider>
 	</React.StrictMode>,
 	document.getElementById('root'),
-)
+)*/
 
 /*
 <React.StrictMode>

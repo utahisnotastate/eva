@@ -1,3 +1,11 @@
 public
 .idea
 .vscode
+node_modules
+
+/src/components/ui/Card/
+/src/components/ui/Button.js
+/src/components/ui/buttonStyle.js
+/src/components/ui/material-dashboard-pro-react.js
+/src/components/ui/material-kit-pro-react.js
+/src/serviceWorker.js

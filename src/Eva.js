@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NavBar from './components/ui/NavBar/navbar'
 import Home from './pages/Home/home'
 import Patients from './pages/Patients/patients'
+import Patient from './pages/Patient/patient'
 
 function Eva() {
 	return (
@@ -11,8 +12,8 @@ function Eva() {
 			<Routes>
 				<Route element={<Home />} path="/" />
 				<Route element={<Patients />} path="/patients" />
-				<Route element={<p>Appointment</p>} path="/appointment/:id" />
-				<Route element={<p>Patient</p>} path="/patient/:id" />
+				<Route element={<p>Appointment</p>} path="/appointments/:id" />
+				<Route element={<Patient />} path="/patients/:id" />
 				<Route element={<p>Requests</p>} path="/requests">
 					<Route element={<p>Request ID</p>} path=":id" />
 				</Route>

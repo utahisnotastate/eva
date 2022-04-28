@@ -8,13 +8,19 @@ import { Link } from 'react-router-dom'
 export default function NavBar() {
 	const navlinks = [
 		{
-			name: 'Home',
+			name: 'EVA EMR',
 			link: '/',
+		},
+		{
+			name: 'Patient',
+			link: '/patients/1',
 		},
 		{
 			name: 'Patients',
 			link: '/patients',
 		},
+		{ name: 'Appointments', link: '/appointments' },
+		{ name: 'Clinical Queue', link: '/clinicalqueue' },
 		{
 			name: 'Form Builder',
 			link: '/formbuilder',

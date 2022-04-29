@@ -1,10 +1,11 @@
 import React from 'react'
 import EVATextField from './TextField'
 import EVASelect from './Select'
+import EVAFieldArray from './EVAFieldArray'
 
 export default function EVADynamicField({
 	name,
-
+	label,
 	value,
 	type,
 	options,
@@ -13,18 +14,14 @@ export default function EVADynamicField({
 }) {
 	switch (type) {
 		case 'text':
-			return <EVATextField name={name} {...rest} />
+			return <EVATextField label={label} name={name} {...rest} />
 		case 'select':
 			return <EVASelect name={name} options={options} />
+		case 'fieldarray':
+			return <EVAFieldArray label={label} name={name} />
+
 		default:
-			return (
-				<EVATextField
-					label={label}
-					name={name}
-					placeholder="test2"
-					{...props}
-				/>
-			)
+			return <EVATextField label={label} name={name} placeholder="test2" />
 	}
 }
 

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from '../../components/ui/NavBar/navbar'
+import { useDispatch, useSelector } from 'react-redux'
 import Card from '../../components/ui/Card/Card'
 import CardHeader from '../../components/ui/Card/CardHeader'
 import CardBody from '../../components/ui/Card/CardBody'
+import { evaAPIGetAll } from '../../api/util.api'
 
 export default function Home() {
 	return (

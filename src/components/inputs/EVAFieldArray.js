@@ -1,8 +1,8 @@
 import React from 'react'
-import { FieldArray, useFormikContext, Field } from 'formik'
+import { FieldArray, Field } from 'formik'
 
 export default function EVAFieldArray({ name, items }) {
-	const { values, setFieldValue } = useFormikContext()
+	console.log(values[name])
 	return (
 		<FieldArray
 			name={name}

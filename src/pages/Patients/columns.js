@@ -12,7 +12,7 @@ const columns = [
 		},
 	},
 	{
-		name: 'details.demographics.date_of_birth',
+		name: 'details.demographics.name.first',
 		label: 'First Name',
 		options: {
 			filter: true,

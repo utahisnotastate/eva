@@ -1,59 +1,116 @@
-import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
+import React, { useState, useEffect } from 'react'
+import { Grid, List, Typography } from '@mui/material'
+import { Formik, Form } from 'formik'
+import Card from '../../components/ui/Card/Card'
+import CardBody from '../../components/ui/Card/CardBody'
+import CardHeader from '../../components/ui/Card/CardHeader'
+import Sidebar from './components/sidebar'
 import { useParams, useRouteMatch, Routes, Route } from 'react-router-dom'
-import { Typography } from '@material-ui/core'
-import SimpleSideBar from '../broken/patientcomponents/simplesidebar/simplesidebar'
-//import routes from './routes'
-import { getFullPatientInformation } from '../../api/patient.api'
 import { evaAPIGetAll } from '../../api/util.api'
-
-const useStyles = makeStyles((theme) => ({
-	list: {
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'flex-start',
-		backgroundColor: '#BADDFF',
-		minHeight: '100vh',
-		boxShadow: '0 2px 4px rgba(0,0,0,.15)',
-	},
-	listitem: {
-		display: 'flex',
-		justifyContent: 'flex-start',
-	},
-	sideitem: {
-		color: '#414141',
-	},
-}))
+import DemographicsForm from './components/demographics.form'
+import { useDispatch } from 'react-redux'
+import FieldArrayForm from './components/arrayfieldform'
+import Button from '../../components/ui/Button'
 
 export default function Patient() {
-	let { path, url } = useRouteMatch()
-
 	let { id } = useParams()
+	const dispatch = useDispatch()
+	const [activelabel, setActiveLabel] = useState('Demographics')
+	const [patient, setPatient] = useState({
+		allergies: [],
+		appointments: [],
+		demographics: {
+			name: {
+				last: '',
+				first: 'Utah',
+				middle: '',
+				prefferd_name: '',
+			},
+			address: {
+				zip: '',
+				city: '',
+				state: '',
+				address_one: '',
+				address_two: '',
+			},
+			date_of_birth: '',
+			contact_methods: [
+				{
+					type: '',
+					value: '',
+				},
+			],
+		},
+		diagnosis: [],
+		medicalhistory: [],
+		medications: [],
+		actions: [],
+		requests: [],
+		surgicalhistory: [],
+	})
+	const arrayfields = [
+		{ name: 'diagnosis', label: 'Diagnosis', title: 'Diagnosis' },
+		{
+			name: 'medicalhistory',
+			label: 'medicalhistory',
+			title: 'Medical History',
+		},
+		{
+			name: 'surgicalhistory',
+			label: 'Surgical History',
+			title: 'Surgical History',
+		},
+	]
 
 	useEffect(() => {
-		getFullPatientInformation(id).then((patient) => {
+		evaAPIGetAll(`patients/${id}`).then((patient) => {
 			console.log(patient)
+			setPatient(patient.details)
+			//dispatch({ type: 'LOAD_PATIENTS', patients })
 		})
 	}, [id])
 	return (
 		<Formik
 			enableReinitialize
-			initialValues={{
-				demographics: {},
-			}}
-			onSubmit={(values, { setSubmitting }) => {
-				setTimeout(() => {
-					alert(JSON.stringify(values, null, 2))
-
-					setSubmitting(false)
-				}, 400)
-			}}
+			initialValues={patient}
+			onSubmit={(values) => console.log(values)}
 		>
 			{({ values }) => (
 				<Form>
-					<p>Test</p>
+					<div
+						style={{
+							display: 'flex',
+							flexDirection: 'row',
+							justifyContent: 'space-around',
+							gap: '20px',
+							backgroundColor: '#f3f3f3',
+						}}
+					>
+						<Card style={{ width: '20%' }}>
+							<CardBody>
+								<Sidebar setActiveLabel={setActiveLabel} />
+							</CardBody>
+						</Card>
+						<div style={{ display: 'flex', flexDirection: 'column' }}>
+							<Card>
+								<CardHeader color="primary">
+									<Typography variant="h4">{activelabel}</Typography>
+								</CardHeader>
+								<CardBody>
+									<DemographicsForm />
+									{arrayfields.map((field, index) => (
+										<FieldArrayForm
+											items={values[field.name]}
+											key={index}
+											name={field.name}
+											title={field.title}
+										/>
+									))}
+								</CardBody>
+							</Card>
+							<Button onClick={() => console.log(values)}>Save</Button>
+						</div>
+					</div>
 				</Form>
 			)}
 		</Formik>
@@ -61,131 +118,9 @@ export default function Patient() {
 }
 
 /*
-<FormContent formstate={formstate} setFormState={setFormState} />
-<Grid container>
-			<Grid item xs={2}>
-				<SimpleSideBar routes={routes} />
-			</Grid>
-			<Grid item xs={10}>
-				<Paper>
-					<Routes>
-						<Route exact path={path}>
-							<Typography variant="body1">Content</Typography>
-						</Route>
-						{routes.map((route) => (
-							<Route
-								component={route.component}
-								exact
-								key={route.path}
-								path={`${route.path}`}
+<EVADynamicField
+								label={activefield.label}
+								name={activefield.name}
+								type="text"
 							/>
-						))}
-					</Routes>
-				</Paper>
-			</Grid>
-		</Grid>
-
-<Formik
-						initialValues={patient}
-						enableReinitialize
-						onSubmit={(patient) => handleSave(patient)}>
-						<Form>
-							<Switch>
-								<Route exact path={path}>
-									<Typography variant="body1">
-										Content
-									</Typography>
-								</Route>
-								{routes.map((route) => (
-									<Route
-										key={route.path}
-										exact
-										path={`${path}${route.path}`}
-										component={route.component}
-									/>
-								))}
-							</Switch>
-						</Form>
-					</Formik>
-
-
-* <Grid item xs={10}>
-				<Switch>
-					<Route exact path={path}>
-						<Typography variant="body1">Content</Typography>
-					</Route>
-					{routes.map((route) => (
-						<Route
-							key={route.path}
-							exact
-							path={`${path}${route.path}`}
-							component={route.component}
-						/>
-					))}
-				</Switch>
-			</Grid>
-*
-*
-* */
-/*
-				<List className={classes.list}>
-					{routes.map((route) => (
-						<ListItem className={classes.listitem} key={route.path}>
-							<NavLink
-								activeStyle={{ color: '#0232b2' }}
-								to={`${url}${route.path}`}>
-								<ListItemText
-									primary={
-										<Typography
-											className={classes.sideitem}
-											variant="body1">
-											{route.label}
-										</Typography>
-									}
-								/>
-							</NavLink>
-						</ListItem>
-					))}
-				</List>
-
-
-  useEffect(() => {
-    apifetch(getFullPatientInformation, id).then((fullpatientinformation) => {
-      handleDemographicsAddressContactMethodsReduxLoad(fullpatientinformation);
-    });
-  }, [id]);
-if (patient.address === null || patient.demographics === null) {
-      // set address to its default blank values
-      dispatch({ type: "address_is_null" });
-      // set demographics to its default blank values
-      dispatch({ type: "demographics_is_null" });
-      // set patient contact methods to values in DB
-      // handlePatientContactMethods(patient.patient_contact_methods);
-
-      dispatch({
-        type: "load_patient_contact_methods",
-        patient_contact_methods: patient.patient_contact_methods,
-      });
-    } else {
-      // load the address into the redux store
-      dispatch({ type: "load_address", address: patient.address });
-      //load the demographics into the store
-      dispatch({ type: "load_demographics", address: patient.demographics });
-      // handlePatientContactMethods(patient.patient_contact_methods);
-
-      // set patient contact methods to values in DB
-      dispatch({
-        type: "load_patient_contact_methods",
-        patient_contact_methods: patient.patient_contact_methods,
-      });
-    }
-
-useEffect(() => {
-  const fetchData = async () => {
-    const result = await getFullPatientInformation(id);
-    //const result = await axios(`http://127.0.0.1:8000/api/patients/${id}/demographics/`);
-    console.log(result);
-  };
-  fetchData();
-}, [id]);
  */

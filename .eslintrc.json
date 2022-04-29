@@ -13,6 +13,9 @@
 	},
 	"plugins": ["only-warn", "react"],
 	"rules": {
-      "react/jsx-filename-extension": "off"
+      "react/jsx-filename-extension": "off",
+      "react/prop-types": "off",
+      "react-perf/jsx-no-new-function-as-prop": "off",
+      "jsx-a11y/no-autofocus": "off"
     }
 }

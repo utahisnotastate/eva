@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { blue } from '@mui/material/colors'
 import ReactDOM from 'react-dom'
 import Eva from './Eva'
+import './index.css'
 //import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
 

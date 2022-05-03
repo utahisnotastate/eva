@@ -27,7 +27,7 @@ function Eva() {
 			<Routes>
 				<Route element={<Home />} path="/" />
 				<Route element={<Patients patients={patients} />} path="/patients" />
-				<Route element={<p>Appointment</p>} path="/appointments/:id" />
+				<Route element={<p>App2342ointment</p>} path="/appointments/:id" />
 				<Route element={<ClinicalQueue />} path="/clinicalqueue" />
 				<Route element={<Patient />} exact path="/patients/:id" />
 				<Route element={<Requests />} path="/requests">

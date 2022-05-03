@@ -1,6 +1,7 @@
 import React from 'react'
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew'
 import CustomTabs from '../../components/ui/CustomTabs/CustomTabs'
+//import MaterialTable from 'material-table'
 
 export default function ClinicalQueue() {
 	const queuetabs = [
@@ -33,6 +34,7 @@ export default function ClinicalQueue() {
 	return (
 		<div>
 			<CustomTabs headerColor="primary" tabs={queuetabs} />
+			<h1>test</h1>
 		</div>
 	)
 }

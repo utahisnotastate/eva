@@ -7,8 +7,9 @@ import Patients from './pages/Patients/patients'
 import Patient from './pages/Patient/patient'
 import ClinicalQueue from './pages/ClinicalQueue/clinicalqueue'
 import Requests from './pages/Requests/requests'
-import { getAllPatients } from './api/patients.api'
+//import { getAllPatients } from './api/patients.api'
 import { evaAPIGetAll } from './api/util.api'
+import Appointment from './pages/Appointment/appointment'
 //import routes from './pages/Patient/routes'
 
 function Eva() {
@@ -27,7 +28,7 @@ function Eva() {
 			<Routes>
 				<Route element={<Home />} path="/" />
 				<Route element={<Patients patients={patients} />} path="/patients" />
-				<Route element={<p>App2342ointment</p>} path="/appointments/:id" />
+				<Route element={<Appointment />} path="/appointments" />
 				<Route element={<ClinicalQueue />} path="/clinicalqueue" />
 				<Route element={<Patient />} exact path="/patients/:id" />
 				<Route element={<Requests />} path="/requests">

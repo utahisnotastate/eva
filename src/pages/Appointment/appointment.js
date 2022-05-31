@@ -4,12 +4,11 @@ import Button from '@mui/material/Button'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
-import Paper from '@mui/material/Paper'
 import Card from '../../components/ui/Card/Card'
 import CardHeader from '../../components/ui/Card/CardHeader'
 import CardFooter from '../../components/ui/Card/CardFooter'
 import { FormikWizard } from 'formik-wizard-form'
-import Complaints from './inprogress/complaints/complaints'
+import Complaints from '../../components/EVAForm/FormStates/InProgress/appointment/components/complaints/complaint'
 import Assessment from './inprogress/assessment/assessment'
 import PhysicalExam from './inprogress/physicalexam/physicalexam'
 import ReviewOfSystems from './inprogress/reviewofsystems/reviewofsystems'
@@ -27,18 +26,13 @@ export default function Appointment() {
 				<FormikWizard
 					activeStepIndex={0}
 					initialValues={{
-						firstName: '',
-						lastName: '',
-						username: '',
-						password: '',
-						email: '',
-						phone: '',
-						addressLine1: '',
-						addressLine2: '',
-						employerName: '',
-						designation: '',
-						totalExperience: '',
-						city: '',
+						preappointment: '',
+						complaints: [],
+						physicalexams: [],
+						reviewofsystems: [],
+						assessments: [],
+						follwups: [],
+						summary: '',
 					}}
 					onSubmit={(values) => {
 						setFinalValues(values)
@@ -84,7 +78,7 @@ export default function Appointment() {
 							>
 								<Stepper activeStep={currentStepIndex}>
 									<Step completed={currentStepIndex > 0}>
-										<StepLabel sx={{ color: '#fff' }}>Complaints</StepLabel>
+										<StepLabel>Complaints</StepLabel>
 									</Step>
 									<Step completed={currentStepIndex > 1}>
 										<StepLabel>Physical Exam</StepLabel>
@@ -122,7 +116,7 @@ export default function Appointment() {
 									type="primary"
 									variant="contained"
 								>
-									{currentStepIndex === 2 ? 'Finish' : 'Next'}
+									{!!currentStepIndex === 2 && 'Finish'}
 								</Button>
 							</CardFooter>
 							<Box>

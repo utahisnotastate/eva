@@ -10,7 +10,10 @@ import Requests from './pages/Requests/requests'
 //import { getAllPatients } from './api/patients.api'
 import { evaAPIGetAll } from './api/util.api'
 import Appointment from './pages/Appointment/appointment'
+import FormBuilder from './pages/FormBuilder/formbuilder'
+import Scheduling from './pages/Scheduling/scheduling'
 //import routes from './pages/Patient/routes'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 function Eva() {
 	const dispatch = useDispatch()
@@ -34,6 +37,8 @@ function Eva() {
 				<Route element={<Requests />} path="/requests">
 					<Route element={<p>Request ID</p>} path=":id" />
 				</Route>
+				<Route element={<Scheduling />} exact path="/scheduling" />
+				<Route element={<FormBuilder />} exact path="/formbuilder" />
 			</Routes>
 		</BrowserRouter>
 	)

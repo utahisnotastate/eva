@@ -2,9 +2,9 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { blue } from '@mui/material/colors'
-import ReactDOM from 'react-dom'
-import Eva from './Eva'
-import './index.css'
+import EVALayout from './components/ui/layout/layout'
+import App from './App'
+//import Eva from './Eva'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 
@@ -20,11 +20,13 @@ const root = createRoot(container)
 root.render(
 	<ThemeProvider theme={theme}>
 		<Provider store={store}>
-			<Eva />
+			<App />
 		</Provider>
 	</ThemeProvider>,
 )
-/*ReactDOM.render(
+/*
+<Eva />
+ReactDOM.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<Eva />

@@ -3,13 +3,5 @@ public
 .vscode
 node_modules
 
-/src/components/ui/Card/
-/src/components/ui/Button.js
-/src/components/ui/buttonStyle.js
-/src/components/ui/material-dashboard-pro-react.js
-/src/components/ui/material-kit-pro-react.js
-/src/serviceWorker.js
-/src/pages/Requests/TimeLine/
-/src/pages/Requests/TimeLine/TimeLineStyled/
-/src/pages/Requests/TimeLine/UpdatePatientRequestForm/
-/src/components/ui/navlinkbutton.js
+
+/prepros.config

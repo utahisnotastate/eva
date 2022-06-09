@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { FormikWizard } from 'formik-wizard-form'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Stepper from '@mui/material/Stepper'
@@ -7,8 +8,7 @@ import StepLabel from '@mui/material/StepLabel'
 import Card from '../../components/ui/Card/Card'
 import CardHeader from '../../components/ui/Card/CardHeader'
 import CardFooter from '../../components/ui/Card/CardFooter'
-import { FormikWizard } from 'formik-wizard-form'
-import Complaints from '../../components/EVAForm/FormStates/InProgress/appointment/components/complaints/complaint'
+
 import Assessment from './inprogress/assessment/assessment'
 import PhysicalExam from './inprogress/physicalexam/physicalexam'
 import ReviewOfSystems from './inprogress/reviewofsystems/reviewofsystems'
@@ -40,7 +40,7 @@ export default function Appointment() {
 					}}
 					steps={[
 						{
-							component: Complaints,
+							component: PhysicalExam,
 						},
 						{
 							component: PhysicalExam,

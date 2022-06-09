@@ -1,4 +1,3 @@
-/*
 import React from 'react'
 import Typography from '@mui/material/Typography'
 import { useFormikContext, FieldArray } from 'formik'
@@ -13,9 +12,9 @@ export default function Complaints() {
 					name="complaints"
 					render={(arrayHelpers) => (
 						<div>
-							{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!values.complaints && values.complaints.length > 0 && values.complaints.map((complaint, index) => (
-										<div key={index}>
-											<p>Complaint</p>
+							{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!values.complaints && values.complaints.length > 0 && values.complaints.map((complaint, index) => (
+									<div key={index}>
+										<p>Complaint</p>
 										</div>
 								  ))}
 						</div>
@@ -25,4 +24,3 @@ export default function Complaints() {
 		</div>
 	)
 }
-*/

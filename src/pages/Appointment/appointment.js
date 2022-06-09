@@ -4,11 +4,11 @@ import Button from '@mui/material/Button'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
+import Complaints from './inprogress/complaints/complaints'
 import Card from '../../components/ui/Card/Card'
 import CardHeader from '../../components/ui/Card/CardHeader'
 import CardFooter from '../../components/ui/Card/CardFooter'
 import { FormikWizard } from 'formik-wizard-form'
-import Complaints from '../../components/EVAForm/FormStates/InProgress/appointment/components/complaints/complaint'
 import Assessment from './inprogress/assessment/assessment'
 import PhysicalExam from './inprogress/physicalexam/physicalexam'
 import ReviewOfSystems from './inprogress/reviewofsystems/reviewofsystems'
@@ -101,7 +101,7 @@ export default function Appointment() {
 								</Stepper>
 							</CardHeader>
 							<CardBody my="2rem">{renderComponent()}</CardBody>
-							<CardFooter display="flex" justifyContent="space-between">
+							<CardFooter display="flex">
 								<Button
 									disabled={isPrevDisabled}
 									onClick={handlePrev}

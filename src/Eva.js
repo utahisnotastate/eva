@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NavBar from './components/ui/NavBar/navbar'
+import { Typography } from '@mui/material/Typography/'
 import Home from './pages/Home/home'
 import { useSelector, useDispatch } from 'react-redux'
+import SidebarLayout from './components/ui/layout/SidebarLayout'
 import Patients from './pages/Patients/patients'
 import Patient from './pages/Patient/patient'
+import NavLinkButton from './components/ui/NavBar/navlink'
 import ClinicalQueue from './pages/ClinicalQueue/clinicalqueue'
 import Requests from './pages/Requests/requests'
 //import { getAllPatients } from './api/patients.api'
@@ -19,34 +21,41 @@ import './App.css'
 
 function Eva() {
 	const dispatch = useDispatch()
-	const navlinks = [
+	const [navlinks, setNavlinks] = useState([
 		{
 			name: 'EVA EMR',
+			label: 'EVA EMR',
 			link: '/',
 		},
 		{
 			name: 'Patient',
+			label: <NavLinkButton text="Patient" to="/patients/1" />,
 			link: '/patients/1',
 		},
 		{
 			name: 'Patients',
+			label: 'Patients',
 			link: '/patients',
 		},
-		{ name: 'Appointments', link: '/appointments' },
+		{ name: 'Appointments', label: 'Appointments', link: '/appointments' },
 		{ name: 'Clinical Queue', link: '/clinicalqueue' },
 		{
 			name: 'Form Builder',
 			link: '/formbuilder',
+			label: 'Form Builder',
 		},
 		{
 			name: 'Requests',
 			link: '/requests',
+			label: 'Requests',
 		},
 		{
 			name: 'Scheduling',
 			link: '/scheduling',
+			label: 'Scheduling',
 		},
-	]
+	])
+	// <Route element={<Patient />} exact path="/patients/:id" />
 	//const [patients, setPatients] = useState([])
 	const patients = useSelector((state) => state.patients)
 	useEffect(() => {
@@ -63,7 +72,7 @@ function Eva() {
 					<Route element={<Patients patients={patients} />} path="/patients" />
 					<Route element={<Appointment />} path="/appointments" />
 					<Route element={<ClinicalQueue />} path="/clinicalqueue" />
-					<Route element={<Patient />} exact path="/patients/:id" />
+					<Route element={<SidebarLayout />} exact path="/patients/:id" />
 					<Route element={<Requests />} path="/requests">
 						<Route element={<p>Request ID</p>} path=":id" />
 					</Route>

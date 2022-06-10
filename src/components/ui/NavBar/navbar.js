@@ -36,7 +36,10 @@ export default function NavBar() {
 	]
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static">
+			<AppBar
+				position="static"
+				sx={{ flexGrow: 1, backgroundColor: `#001529` }}
+			>
 				<Toolbar>
 					{navlinks.map((navlink, index) => (
 						<Link key={index} to={navlink.link}>

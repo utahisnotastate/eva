@@ -1,4 +1,10 @@
 import React from 'react'
+import {
+	AppstoreOutlined,
+	MailOutlined,
+	SettingOutlined,
+} from '@ant-design/icons'
+import NavBar from '../NavBar/navbar'
 import './layout.css'
 import { Breadcrumb, Layout, Menu } from 'antd'
 
@@ -7,32 +13,19 @@ const navlinks = [
 	{ label: 'item 1', key: 'item-1' },
 	{ label: 'item 2', key: 'item-2' },
 ]
-
+// <Menu items={props.navlinks} mode="horizontal" theme="dark" />
 export default function EVALayout(props) {
 	return (
 		<Layout className="layout">
 			<Header>
-				<Menu
-					defaultSelectedKeys={['2']}
-					items={props.navlinks}
-					mode="horizontal"
-					theme="dark"
-				/>
+				<NavBar />
 			</Header>
 			<Content
 				style={{
 					padding: '0 50px',
+					margin: '16px 0',
 				}}
 			>
-				<Breadcrumb
-					style={{
-						margin: '16px 0',
-					}}
-				>
-					<Breadcrumb.Item>Home</Breadcrumb.Item>
-					<Breadcrumb.Item>List</Breadcrumb.Item>
-					<Breadcrumb.Item>App</Breadcrumb.Item>
-				</Breadcrumb>
 				<div className="site-layout-content">{props.children}</div>
 			</Content>
 			<Footer

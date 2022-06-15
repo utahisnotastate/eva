@@ -7,20 +7,6 @@ export default function Complaints() {
 	return (
 		<div>
 			<Typography>Complaints</Typography>
-			<div>
-				<FieldArray
-					name="complaints"
-					render={(arrayHelpers) => (
-						<div>
-							{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!values.complaints && values.complaints.length > 0 && values.complaints.map((complaint, index) => (
-									<div key={index}>
-										<p>Complaint</p>
-										</div>
-								  ))}
-						</div>
-					)}
-				/>
-			</div>
 		</div>
 	)
 }

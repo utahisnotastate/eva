@@ -8,7 +8,6 @@ import Card from '../../components/ui/Card/Card'
 import CardHeader from '../../components/ui/Card/CardHeader'
 import CardFooter from '../../components/ui/Card/CardFooter'
 import { FormikWizard } from 'formik-wizard-form'
-import Complaints from '../../components/EVAForm/FormStates/InProgress/appointment/components/complaints/complaint'
 import Assessment from './inprogress/assessment/assessment'
 import PhysicalExam from './inprogress/physicalexam/physicalexam'
 import ReviewOfSystems from './inprogress/reviewofsystems/reviewofsystems'
@@ -16,6 +15,7 @@ import Summary from './inprogress/summary/summary'
 import Finalize from './inprogress/finalize/finalize'
 import FollowUp from './inprogress/followup/followup'
 import CardBody from '../../components/ui/Card/CardBody'
+import Complaints from './inprogress/complaints/complaints'
 
 export default function Appointment() {
 	const [finalValues, setFinalValues] = React.useState({})

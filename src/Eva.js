@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/home'
 import { useSelector, useDispatch } from 'react-redux'
-import SidebarLayout from './components/ui/layout/SidebarLayout'
 import Patients from './pages/Patients/patients'
 import NavLinkButton from './components/ui/NavBar/navlink'
 import ClinicalQueue from './pages/ClinicalQueue/clinicalqueue'
@@ -14,6 +13,8 @@ import Scheduling from './pages/Scheduling/scheduling'
 import EVALayout from './components/ui/layout/layout'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './App.css'
+import Patient from './pages/Patient/patient'
+//import Patient from '../src/pages/Patient/migration/patient'
 
 function Eva() {
 	const dispatch = useDispatch()
@@ -68,7 +69,7 @@ function Eva() {
 					<Route element={<Patients patients={patients} />} path="/patients" />
 					<Route element={<Appointment />} path="/appointments" />
 					<Route element={<ClinicalQueue />} path="/clinicalqueue" />
-					<Route element={<SidebarLayout />} exact path="/patients/:id" />
+					<Route element={<Patient />} exact path="/patients/:id" />
 					<Route element={<Requests />} path="/requests">
 						<Route element={<p>Request ID</p>} path=":id" />
 					</Route>

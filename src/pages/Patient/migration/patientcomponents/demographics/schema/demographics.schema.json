@@ -1,0 +1,76 @@
+{
+  "properties": {
+    "demographics": {
+      "type": "object",
+      "title": "Demographics",
+      "properties": {
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "title": "Date of birth"
+        },
+        "name": {
+          "type": "object",
+          "title": "Name",
+          "properties": {
+            "first": {
+              "type": "string",
+              "title": "First"
+            },
+            "last": {
+              "type": "string",
+              "title": "Last"
+            },
+            "middle": {
+              "type": "string",
+              "title": "Middle"
+            }
+          }
+        },
+        "address": {
+          "type": "object",
+          "title": "Address",
+          "properties": {
+            "address1": {
+              "type": "string",
+              "title": "Address 1"
+            },
+            "address2": {
+              "type": "string",
+              "title": "Address 2"
+            },
+            "city": {
+              "type": "string",
+              "title": "City"
+            },
+            "state": {
+              "type": "string",
+              "title": "State"
+            },
+            "zip": {
+              "type": "string",
+              "title": "Zip"
+            }
+          }
+        },
+        "contact_methods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "title": "Contact Methods",
+            "properties": {
+              "type": {
+                "type": "string",
+                "title": "Type"
+              },
+              "phone_number": {
+                "type": "number",
+                "title": "Numbrt"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

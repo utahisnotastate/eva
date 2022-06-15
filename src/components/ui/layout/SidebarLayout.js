@@ -5,10 +5,11 @@ import {
 	NotificationOutlined,
 	UserOutlined,
 } from '@ant-design/icons'
-import { Breadcrumb, Layout, Menu } from 'antd'
+import { Layout, Menu } from 'antd'
 import './sidebarlayout.css'
 
-const { Header, Content, Footer, Sider } = Layout
+const { Content, Sider } = Layout
+
 const items1 = ['1', '2', '3'].map((key) => ({
 	key,
 	label: `nav ${key}`,
@@ -31,7 +32,7 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
 	},
 )
 
-export default function SidebarLayout() {
+export default function SidebarLayout({ links }) {
 	return (
 		<Layout className="site-layout-background">
 			<Content>

@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "allergies": {
+      "label": "Allergies",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "allergy_type": {
+            "label": "Allergy Type",
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "label": "Description"
+          }
+        }
+      }
+    }
+  }
+}

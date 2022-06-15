@@ -4,14 +4,13 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import MedicalHistory from './components/medicalhistory'
 
 function TabPanel({ children, value, index, ...other }) {
 	return (
 		<div
-			aria-labelledby={`simple-tab-${index}`}
+			aria-labelledby={`vertical-tab-${index}`}
 			hidden={value !== index}
-			id={`simple-tabpanel-${index}`}
+			id={`vertical-tabpanel-${index}`}
 			role="tabpanel"
 			{...other}
 		>
@@ -32,12 +31,12 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
 	return {
-		id: `simple-tab-${index}`,
-		'aria-controls': `simple-tabpanel-${index}`,
+		id: `vertical-tab-${index}`,
+		'aria-controls': `vertical-tabpanel-${index}`,
 	}
 }
 
-export default function Patient() {
+export default function MedicalHistory() {
 	const [value, setValue] = React.useState(0)
 
 	const handleChange = (event, newValue) => {
@@ -45,35 +44,34 @@ export default function Patient() {
 	}
 
 	return (
-		<Box sx={{ width: '100%' }}>
-			<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-				<Tabs
-					aria-label="basic tabs example"
-					centered
-					onChange={handleChange}
-					value={value}
-				>
-					<Tab label="Demographics" {...a11yProps(0)} />
-					<Tab label="Allergies" {...a11yProps(1)} />
-					<Tab label="Diagnosese" {...a11yProps(2)} />
-					<Tab label="Medications" {...a11yProps(3)} />
-					<Tab label="Medical History" {...a11yProps(4)} />
-				</Tabs>
-			</Box>
+		<Box
+			sx={{
+				flexGrow: 1,
+				bgcolor: 'background.paper',
+				display: 'flex',
+				height: 224,
+			}}
+		>
+			<Tabs
+				aria-label="Vertical tabs example"
+				onChange={handleChange}
+				orientation="vertical"
+				sx={{ borderRight: 1, borderColor: 'divider' }}
+				value={value}
+				variant="scrollable"
+			>
+				<Tab label="Surgical" {...a11yProps(0)} />
+				<Tab label="Social" {...a11yProps(1)} />
+				<Tab label="Medical" {...a11yProps(2)} />
+			</Tabs>
 			<TabPanel index={0} value={value}>
-				Demographics
+				Surgical
 			</TabPanel>
 			<TabPanel index={1} value={value}>
-				Allergies
+				Social
 			</TabPanel>
 			<TabPanel index={2} value={value}>
-				Diagnoses
-			</TabPanel>
-			<TabPanel index={3} value={value}>
-				Medications
-			</TabPanel>
-			<TabPanel index={4} value={value}>
-				<MedicalHistory />
+				Medical
 			</TabPanel>
 		</Box>
 	)

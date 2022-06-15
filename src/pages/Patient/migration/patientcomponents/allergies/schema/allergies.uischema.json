@@ -1,0 +1,16 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Control",
+      "scope": "#/properties/allergies"
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/allergies/item/description",
+      "options": {
+        "multi": true
+      }
+    }
+  ]
+}

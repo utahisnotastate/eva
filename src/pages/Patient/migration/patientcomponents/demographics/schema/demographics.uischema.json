@@ -1,0 +1,27 @@
+{
+  "type": "Group",
+  "label": "Demographics",
+  "elements": [
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "label": "First Name",
+          "scope": "#/properties/name/properties/first"
+        },
+        {
+          "type:": "Control",
+          "label": "Middle Name",
+          "scope": "#/properties/name/properties/middle"
+        },
+        {
+          "type": "Control",
+          "label": "Last Name",
+          "scope": "#/properties/name/properties/last"
+        }
+
+      ]
+    }
+  ]
+}

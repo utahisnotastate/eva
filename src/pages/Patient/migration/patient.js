@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core'
-import { useParams, useRouteMatch } from 'react-router-dom'
-import { getFullPatientInformation } from '../../api/patient.api'
-import { Formik } from 'formik'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import { useParams, useRouteMatch, Switch, Route } from 'react-router-dom'
+import { Typography } from '@material-ui/core'
+import SimpleSideBar from './patientcomponents/simplesidebar/simplesidebar'
+import routes from './routes'
+import blankpatient from './patient.mock'
 
 const useStyles = makeStyles((theme) => ({
 	list: {
@@ -24,46 +29,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Patient() {
 	let { path, url } = useRouteMatch()
-
+	const classes = useStyles()
 	let { id } = useParams()
+	const [patient, setPatient] = useState(blankpatient)
 
+	const dispatch = useDispatch()
+
+	const handleSave = (patient) => {
+		console.log(patient)
+	}
 	useEffect(() => {
-		getFullPatientInformation(id).then((patient) => {
-			console.log(patient)
-		})
+		console.log('lol')
 	}, [id])
 	return (
-		<Formik
-			enableReinitialize
-			initialValues={{
-				demographics: {},
-			}}
-			onSubmit={(values, { setSubmitting }) => {
-				setTimeout(() => {
-					alert(JSON.stringify(values, null, 2))
-
-					setSubmitting(false)
-				}, 400)
-			}}
-		>
-			{({ values }) => (
-				<Form>
-					<p>Test</p>
-				</Form>
-			)}
-		</Formik>
-	)
-}
-
-/*
-<FormContent formstate={formstate} setFormState={setFormState} />
-<Grid container>
+		<Grid container>
 			<Grid item xs={2}>
 				<SimpleSideBar routes={routes} />
 			</Grid>
 			<Grid item xs={10}>
 				<Paper>
-					<Routes>
+					<Switch>
 						<Route exact path={path}>
 							<Typography variant="body1">Content</Typography>
 						</Route>
@@ -72,14 +57,17 @@ export default function Patient() {
 								component={route.component}
 								exact
 								key={route.path}
-								path={`${route.path}`}
+								path={`${path}${route.path}`}
 							/>
 						))}
-					</Routes>
+					</Switch>
 				</Paper>
 			</Grid>
 		</Grid>
+	)
+}
 
+/*
 <Formik
 						initialValues={patient}
 						enableReinitialize

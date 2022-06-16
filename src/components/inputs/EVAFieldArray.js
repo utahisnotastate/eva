@@ -2,7 +2,6 @@ import React from 'react'
 import { FieldArray, Field } from 'formik'
 
 export default function EVAFieldArray({ name, items }) {
-	console.log(values[name])
 	return (
 		<FieldArray
 			name={name}

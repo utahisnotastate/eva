@@ -8,24 +8,52 @@ export default function Demographics() {
 	return (
 		<div>
 			<div style={{ display: 'flex', flexDirection: 'column', margin: 10 }}>
-				<Typography variant="h6">Name</Typography>
 				<EVADynamicField
 					label="First Name"
 					name="details.first_name"
-					placeHolder="First Name"
+					type="text"
 				/>
-				<EVADynamicField label="Last Name" name="details.last_name" />
-				<EVADynamicField label="Middle Name" name="details.middle_name" />
-				<EVADynamicField label="Preferred Name" name="details.preffered_name" />
-				<EVADynamicField label="Date of Birth" name="details.date_of_birth" />
+				<EVADynamicField
+					label="Middle Name"
+					name="details.middle_name"
+					type="text"
+				/>
+				<EVADynamicField
+					label="Last Name"
+					name="details.last_name"
+					type="text"
+				/>
+				<EVADynamicField
+					label="Preferred Name"
+					name="details.preffered_name"
+					type="text"
+				/>
+				<EVADynamicField
+					label="Date of Birth"
+					name="details.date_of_birth"
+					type="text"
+				/>
 			</div>
 			<div style={{ display: 'flex', flexDirection: 'column', margin: 10 }}>
-				<EVADynamicField label="Address 1" name="details.address_one" />
-				<EVADynamicField label="Address 2" name="details.address_two" />
-				<EVADynamicField label="City" name="details.city" />
-				<EVADynamicField label="State" name="details.state" />
-				<EVADynamicField label="Zip" name="details.zip" />
+				<EVADynamicField
+					label="Address 1"
+					name="details.address_one"
+					type="text"
+				/>
+				<EVADynamicField
+					label="Address 2"
+					name="details.address_two"
+					type="text"
+				/>
+				<EVADynamicField label="City" name="details.city" type="text" />
+				<EVADynamicField label="State" name="details.state" type="text" />
+				<EVADynamicField label="Zip" name="details.zip" type="text" />
 			</div>
 		</div>
 	)
 }
+
+/*
+ *
+ *
+ * */

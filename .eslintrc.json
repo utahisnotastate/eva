@@ -3,7 +3,7 @@
 		"browser": true,
 		"es2021": true
 	},
-	"extends": ["eslint:recommended", "plugin:react/recommended", "hardcore/react", "prettier"],
+	"extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -11,11 +11,12 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": ["only-warn", "react"],
+	"plugins": ["only-warn", "react", "prettier"],
 	"rules": {
       "react/jsx-filename-extension": "off",
       "react/prop-types": "off",
       "react-perf/jsx-no-new-function-as-prop": "off",
-      "jsx-a11y/no-autofocus": "off"
+      "jsx-a11y/no-autofocus": "off",
+      "no-extra-boolean-cast": "off"
     }
 }

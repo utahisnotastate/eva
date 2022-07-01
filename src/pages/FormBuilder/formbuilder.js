@@ -33,9 +33,7 @@ export default function EVAFormBuilder() {
                 <Form>
 									<Button
 										variant={`contained`}
-										onClick={() => {
-											console.log("Preview")
-										}}>
+										onClick={submitForm}>
 										Save
 									</Button>
                         <FieldArray

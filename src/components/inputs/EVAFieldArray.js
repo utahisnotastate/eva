@@ -1,7 +1,7 @@
 import React from 'react'
 import { FieldArray, Field } from 'formik'
 
-export default function EVAFieldArray({ name, items, blankobject }) {
+export default function EVAFieldArray({ name, items, blankobject, addbuttonlabel }) {
 	return (
 		<FieldArray
 			name={name}
@@ -28,7 +28,7 @@ export default function EVAFieldArray({ name, items, blankobject }) {
 					) : (
 						<button onClick={() => arrayHelpers.push(blankobject)} type="button">
 							{/* show this when user has removed all friends from the list */}
-							Add a friend
+							{addbuttonlabel}
 						</button>
 					)}
 				</>

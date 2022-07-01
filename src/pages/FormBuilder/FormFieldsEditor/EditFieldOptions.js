@@ -1,23 +1,41 @@
-import React from "react"
-import { Field } from 'formik';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import { Select } from 'formik-mui';
+import React from 'react'
+import {Typography,Button} from "@mui/material"
+import { FieldArray, Field } from 'formik'
+import {
+	TextField,
+} from 'formik-mui';
 
-export default function EditFieldOptions({name}) {
-    return (
-        <Field
-            component={Select}
-
-            name={name}
-            label="Field Options"
-
-        >
-            <MenuItem value={10}>Text</MenuItem>
-            <MenuItem value={20}>Number</MenuItem>
-            <MenuItem value={30}>Date</MenuItem>
-            <MenuItem value={30}>Range</MenuItem>
-        </Field>
-    )
+export default function EditFieldOptions({ name, options = [] }) {
+	return (
+		<FieldArray
+			name={name}
+			render={(arrayHelpers) => (
+				<>
+					{options && options.length > 0 ? (
+						options.map((item, index) => (
+							<div style={{display: "flex", flexDirection: "row"}} key={index}>
+								<Field component={TextField} name={`${name}.${index}.label`} label={`Option`} InputLabelProps={{ shrink: true }} fullWidth />
+								<Button
+									onClick={() => arrayHelpers.remove(index)}
+									variant={`contained`}
+								>
+									-
+								</Button>
+								<Button
+									onClick={() => arrayHelpers.insert(index, '')}
+									variant={`contained`}
+								>
+									+
+								</Button>
+							</div>
+						))
+					) : (
+						<Button onClick={() => arrayHelpers.push({label: ''})} variant={`contained`}>
+							Add New Choice for Field
+						</Button>
+					)}
+				</>
+			)}
+		/>
+	)
 }

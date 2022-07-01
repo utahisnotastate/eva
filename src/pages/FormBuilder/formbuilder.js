@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Box, Typography, InputLabel, FormControl, MenuItem,}  from "@mui/material"
+import {Typography, MenuItem, Grid, FormGroup}  from "@mui/material"
 import {
     Autocomplete,
     TextField,
@@ -24,15 +24,14 @@ export default function EVAFormBuilder() {
             onSubmit={(values) => console.log(values)}
             >
             {({values, submitForm, resetForm, isSubmitting, touched, errors, setFieldValue}) => (
-                <Form style={{display: "flex", flexDirection: "row", gap: "20px"}}>
-                    <div>
+                <Form>
                         <FieldArray
                             name="fields"
                             render={arrayHelpers => (
-                                <div>
+                                <div style={{display: "flex", flexDirection: "column"}}>
                                     {values.fields && values.fields.length > 0 ? (
                                         values.fields.map((field, index) => (
-                                            <div key={index} style={{display: "flex"}}>
+                                            <div key={index}>
                                                 <div>
                                                     <EditField name={`fields.${index}`} type={field.type}  />
                                                 </div>
@@ -47,8 +46,8 @@ export default function EVAFormBuilder() {
                                     ) : (
                                         <Typography>No fields on this form. Please add one below</Typography>
                                     )}
-                                    <div>
-                                        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+
+                                        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", width:"100%"}}>
                                             <Field
                                                 component={Select}
                                                 name={`new_type`}
@@ -73,13 +72,13 @@ export default function EVAFormBuilder() {
                                                 Add a Field
                                             </button>
                                         </div>
-                                    </div>
+
 
                                 </div>
                             )}
                         />
 
-                    </div>
+
 
                 </Form>
             )}
@@ -87,3 +86,12 @@ export default function EVAFormBuilder() {
         </Formik>
     )
 }
+
+
+/*
+*
+*
+*
+*
+*
+* */

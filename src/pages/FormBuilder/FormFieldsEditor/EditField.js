@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
-import {Box, Typography, MenuItem, InputLabel, FormControl} from "@mui/material"
+import {Box, Typography, Grid, Button} from "@mui/material"
 import {
-    Autocomplete,
     TextField,
-    Select,
-    Switch,
-    ToggleButtonGroup,
 } from 'formik-mui';
+import EVAFieldArray from "../../../components/inputs/EVAFieldArray";
 import { Formik, Form, Field, FieldArray } from 'formik';
 
 
-export default function EditField({name, type}) {
+export default function EditField({name, type, options}) {
     return (
-        <div style={{display: "flex", flexDirection:"column", margin: "5px"}}>
-            <Typography>Type: {type}</Typography>
-            <br/>
-            <Field component={TextField} name={`${name}.label`} label={`Label`} placeholder={`Please enter label for field`}  InputProps={{ notched: true }} fullWidth />
-            <Field component={TextField} name={`${name}.placeholder`} label={`Place Holder`} placeholder={`Please enter placeholder for field`}  InputProps={{ notched: true }} />
-            <Typography>Options</Typography>
+        <div style={{flexGrow: 1, padding: "10px"}}>
+        <div style={{display: "flex", flexDirection:"column", gap: "5px"}}>
+            <Field component={TextField} style={{marginBottom: "10px"}} name={`${name}.label`} InputLabelProps={{ shrink: true }} label={`Label`} placeholder={`Please enter label for field`}  InputProps={{ notched: true }} fullWidth />
+            <Field component={TextField} name={`${name}.placeholder`} InputLabelProps={{ shrink: true }} label={`Place Holder`} placeholder={`Please enter placeholder for field`}  InputProps={{ notched: true }} fullWidth />
+            {type === "text" ? null: (
+                <Typography>Edit choices here</Typography>
+            )}
+            </div>
         </div>
+
     )
 }

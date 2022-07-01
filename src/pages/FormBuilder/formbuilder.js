@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Typography, MenuItem, Grid, FormGroup}  from "@mui/material"
+import {Typography, MenuItem, Grid, FormGroup, Button}  from "@mui/material"
 import {
     Autocomplete,
     TextField,
@@ -25,22 +25,27 @@ export default function EVAFormBuilder() {
             >
             {({values, submitForm, resetForm, isSubmitting, touched, errors, setFieldValue}) => (
                 <Form>
+									<Button
+										variant={`contained`}
+										onClick={() => {
+											console.log("Preview")
+										}}>
+										Save
+									</Button>
                         <FieldArray
                             name="fields"
                             render={arrayHelpers => (
                                 <div style={{display: "flex", flexDirection: "column"}}>
                                     {values.fields && values.fields.length > 0 ? (
                                         values.fields.map((field, index) => (
-                                            <div key={index}>
-                                                <div>
-                                                    <EditField name={`fields.${index}`} type={field.type}  />
-                                                </div>
-                                                <button
-                                                    type="button"
+                                            <div key={index} style={{display: "flex", flexDirection: "row", border: "1px solid black", marginBottom: 10}}>
+                                                    <EditField name={`fields.${index}`} type={field.type} options={field.options} index={index}  />
+                                                <Button
+                                                    variant={`contained`}
                                                     onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
                                                 >
-                                                    Delete
-                                                </button>
+                                                    X
+                                                </Button>
                                             </div>
                                         ))
                                     ) : (
@@ -51,15 +56,19 @@ export default function EVAFormBuilder() {
                                             <Field
                                                 component={Select}
                                                 name={`new_type`}
+																								style={{width: "500px"}}
                                                 label="Choose New Field Type"
                                             >
                                                 <MenuItem value={`text`}>Text</MenuItem>
                                                 <MenuItem value={`number`}>Number</MenuItem>
                                                 <MenuItem value={`date`}>Date</MenuItem>
                                                 <MenuItem value={`range`}>Range</MenuItem>
-                                                <MenuItem value={`range`}>Range</MenuItem>
+                                                <MenuItem value={`select`}>Select</MenuItem>
+																							<MenuItem value={`radio_group`}>Radio Group</MenuItem>
                                             </Field>
-                                            <button type="button" onClick={() => {
+                                            <Button
+																							variant={`contained`}
+																							onClick={() => {
                                                 arrayHelpers.push({
                                                     label: "",
                                                     placeholder: "",
@@ -70,14 +79,20 @@ export default function EVAFormBuilder() {
                                             }}>
                                                 {/* show this when user has removed all friends from the list */}
                                                 Add a Field
-                                            </button>
+                                            </Button>
                                         </div>
 
 
                                 </div>
                             )}
                         />
-
+									<Button
+										variant={`contained`}
+										onClick={() => {
+											console.log("Preview")
+										}}>
+										Preview
+									</Button>
 
 
                 </Form>

@@ -8,6 +8,7 @@ import {
     ToggleButtonGroup,
 } from 'formik-mui';
 import EditField from "./FormFieldsEditor/EditField";
+import DynamicEditField from './FormFieldsEditor/DynamicEditField'
 import { Formik, Form, Field, FieldArray } from 'formik';
 
 const fieldobject = {label: "", placeholder: "", type: "text"}
@@ -18,7 +19,12 @@ export default function EVAFormBuilder() {
 	return (
         <Formik
             initialValues={{
-                fields: [{label: "Eye Exam", placeholder: "Enter Eye Exam Info", type: "text"},{label: "Dementia Exam", placeholder: "Enter Results for Dementia Tests", type: "text"}, {label: "Alzheimers Exam", placeholder: "Enter Results for Alzheminer Tests", type: "text"} ],
+                fields: [
+									{label: "Eye Exam", placeholder: "Enter Eye Exam Info", helperText: "", type: "text"},
+									{label: "Dementia Exam", placeholder: "Enter Results for Dementia Tests", helperText: "", type: "text"},
+									{label: "Alzheimers Exam", placeholder: "Enter Results for Alzheminer Tests", helperText: "", type: "text"},
+									{label: "Test Radio Group", placeholder: "Enter test radio group label", type: "select", helperText: "", options: [{label: "Radio Utah 1"}, {label: "Radio Utah 2"}]}
+								],
                 new_type: '',
         }}
             onSubmit={(values) => console.log(values)}
@@ -39,7 +45,7 @@ export default function EVAFormBuilder() {
                                     {values.fields && values.fields.length > 0 ? (
                                         values.fields.map((field, index) => (
                                             <div key={index} style={{display: "flex", flexDirection: "row", border: "1px solid black", marginBottom: 10}}>
-                                                    <EditField name={`fields.${index}`} type={field.type} options={field.options} index={index}  />
+                                                    <DynamicEditField name={`fields.${index}`} type={field.type} optionsfieldname={`fields.${index}.options`} options={values.fields[index]['options']}  />
                                                 <Button
                                                     variant={`contained`}
                                                     onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
@@ -69,12 +75,24 @@ export default function EVAFormBuilder() {
                                             <Button
 																							variant={`contained`}
 																							onClick={() => {
-                                                arrayHelpers.push({
-                                                    label: "",
-                                                    placeholder: "",
-                                                    type: values.new_type,
-                                                    options: values.new_type === "select" || "radio_group" ? [] : null
-                                                })
+																								const {new_type} = values;
+																								const hasOptions = new_type === "select" || "radio_group" ? true: false
+																								console.log(new_type)
+																								console.log(hasOptions)
+																								if(hasOptions) {
+																									arrayHelpers.push({
+																										label: "",
+																										placeholder: "",
+																										type: new_type,
+																										options: []
+																									})
+																								} else {
+																									arrayHelpers.push({
+																										label: "",
+																										placeholder: "",
+																										type: new_type,
+																									})
+																								}
                                                 setFieldValue("new_type", "")
                                             }}>
                                                 {/* show this when user has removed all friends from the list */}
@@ -101,6 +119,13 @@ export default function EVAFormBuilder() {
         </Formik>
     )
 }
+
+/*arrayHelpers.push({
+                                                    label: "",
+                                                    placeholder: "",
+                                                    type: new_type,
+                                                    options: new_type === "select" || "radio_group" ? [] : null
+                                                })*/
 
 
 /*

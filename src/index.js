@@ -2,6 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { blue } from '@mui/material/colors'
+import { ModalProvider } from 'react-modal-hook'
 import EVALayout from './components/ui/layout/layout'
 import App from './App'
 //import Eva from './Eva'
@@ -18,13 +19,19 @@ const theme = createTheme({
 const container = document.getElementById('root')
 const root = createRoot(container)
 root.render(
+	<ModalProvider>
+		<App />
+	</ModalProvider>,
+)
+/*
+root.render(
 	<ThemeProvider theme={theme}>
 		<Provider store={store}>
 			<App />
 		</Provider>
 	</ThemeProvider>,
 )
-/*
+
 <Eva />
 ReactDOM.render(
 	<React.StrictMode>

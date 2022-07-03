@@ -74,7 +74,9 @@ function Eva() {
 						<Route element={<p>Request ID</p>} path=":id" />
 					</Route>
 					<Route element={<Scheduling />} exact path="/scheduling" />
-					<Route element={<FormBuilder />} exact path="/formbuilder" />
+					<Route element={<FormBuilder />} exact path="/formbuilder">
+						<Route element={<p>Form ID</p>} path="preview" />
+					</Route>
 				</Routes>
 			</EVALayout>
 		</BrowserRouter>

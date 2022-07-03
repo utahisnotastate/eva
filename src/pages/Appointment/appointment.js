@@ -116,6 +116,7 @@ export default function Appointment() {
 									type="primary"
 									variant="contained"
 								>
+									Next
 									{!!currentStepIndex === 2 && 'Finish'}
 								</Button>
 							</CardFooter>

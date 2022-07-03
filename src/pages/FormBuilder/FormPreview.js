@@ -27,10 +27,7 @@ export default function FormPreview({ form }) {
 				Preview Form
 			</Button>
 			<Dialog open={open} onClose={handleClose}>
-				<DialogTitle>
-					<Typography variant="h6">{form.title}</Typography>
-					<Typography variant="h6">{form.description}</Typography>
-				</DialogTitle>
+				<DialogTitle>Physical Exam</DialogTitle>
 				<Divider />
 				<DialogContent>
 					<Formik
@@ -58,12 +55,16 @@ export default function FormPreview({ form }) {
 								<>
 									{form.fields && form.fields.length > 0 ? (
 										form.fields.map((field, index) => (
-											<div key={index}>
-												<Typography variant="h6">{field.label}</Typography>
+											<div key={index} style={{ marginBottom: '15px' }}>
 												<EVADynamicField
-													name={`preview_${index}`}
+													name={`fields.${index}.value`}
 													placeholder={field.placeholder}
 													options={field.options}
+													helperText={field.helperText}
+													type={field.type}
+													label={field.label}
+													required={field.required}
+													disabled={field.disabled}
 												/>
 											</div>
 										))

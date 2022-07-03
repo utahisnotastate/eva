@@ -1,24 +1,20 @@
 import React from 'react'
 import { Field } from 'formik'
 import MenuItem from '@mui/material/MenuItem'
-import { TextField } from 'formik-mui'
+import { TextField, Select } from 'formik-mui'
 
 export default function EVASelect(props) {
-	const { name, label, options } = props
+	const { name, label, placeholder, options } = props
 
 	return (
 		<Field
-			InputLabelProps={{
-				shrink: true,
-			}}
-			component={TextField}
+			style={{ width: '500px' }}
+			component={Select}
 			label={label}
 			name={name}
-			select
-			type="text"
 		>
 			{options.map((option) => (
-				<MenuItem key={option.value} value={option.value}>
+				<MenuItem key={option.label} value={option.label}>
 					{option.label}
 				</MenuItem>
 			))}
@@ -26,7 +22,23 @@ export default function EVASelect(props) {
 	)
 }
 
-/* 
+/*
+*
+* <Field
+			InputProps={{ notched: true }}
+			InputLabelProps={{ shrink: true }}
+			component={TextField}
+			label={label}
+			name={name}
+			select
+			type="text"
+		>
+			{options.map((option) => (
+				<MenuItem key={option.label} value={option.label}>
+					{option.label}
+				</MenuItem>
+			))}
+		</Field>
 *
 * <FormControl>
               <InputLabel shrink={true} htmlFor="tags">

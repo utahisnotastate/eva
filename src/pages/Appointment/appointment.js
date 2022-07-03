@@ -8,7 +8,7 @@ import Card from '../../components/ui/Card/Card'
 import CardHeader from '../../components/ui/Card/CardHeader'
 import CardFooter from '../../components/ui/Card/CardFooter'
 import { FormikWizard } from 'formik-wizard-form'
-import Assessment from './inprogress/assessment/assessment'
+import Assessments from './inprogress/assessments/assessments'
 import PhysicalExam from './inprogress/physicalexam/physicalexam'
 import ReviewOfSystems from './inprogress/reviewofsystems/reviewofsystems'
 import Summary from './inprogress/summary/summary'
@@ -27,7 +27,7 @@ export default function Appointment() {
 					activeStepIndex={0}
 					initialValues={{
 						preappointment: '',
-						complaints: [],
+						complaints: ['neck pain', 'headache'],
 						physicalexams: [],
 						reviewofsystems: [],
 						assessments: [],
@@ -49,7 +49,7 @@ export default function Appointment() {
 							component: ReviewOfSystems,
 						},
 						{
-							component: Assessment,
+							component: Assessments,
 						},
 						{
 							component: FollowUp,

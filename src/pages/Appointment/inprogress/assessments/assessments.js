@@ -4,16 +4,16 @@ import Button from '@mui/material/Button'
 import { TextField } from 'formik-mui'
 import { useFormikContext, FieldArray, Field } from 'formik'
 
-export default function FollowUp() {
+export default function Assessments() {
 	const { values } = useFormikContext()
 	return (
 		<div>
 			<FieldArray
-				name="follwups"
+				name="assessments"
 				render={(arrayHelpers) => (
 					<div>
-						{values.follwups && values.follwups.length > 0 ? (
-							values.follwups.map((followup, index) => (
+						{values.assessments && values.assessments.length > 0 ? (
+							values.assessments.map((assessment, index) => (
 								<div
 									key={index}
 									style={{
@@ -24,29 +24,17 @@ export default function FollowUp() {
 								>
 									<Field
 										component={TextField}
-										name={`follwups.${index}.type`}
-										label="Type"
+										name={`assessments.${index}.icdCode`}
+										label="ICD Code"
 										fullWidth
 										InputLabelProps={{ shrink: true }}
-										placeholder="Followup Type"
+										placeholder="ICD Code"
 									/>
 									<Field
 										component={TextField}
-										name={`follwups.${index}.provider_follow_up`}
-										label="Followup Instructions for Providers"
+										name={`assessments.${index}.details`}
+										label="Additional Details"
 										fullWidth
-										multiline
-										rows={4}
-										InputLabelProps={{ shrink: true }}
-										placeholder="Please enter any additional details about the assessment"
-									/>
-									<Field
-										component={TextField}
-										name={`follwups.${index}.patient_follow_up`}
-										label="Followup Instructions for Patients"
-										fullWidth
-										multiline
-										rows={4}
 										InputLabelProps={{ shrink: true }}
 										placeholder="Please enter any additional details about the assessment"
 									/>
@@ -62,7 +50,7 @@ export default function FollowUp() {
 							))
 						) : (
 							<Typography variant="body1">
-								No Follow Ups. Please add one below.
+								No Assessments. Please add one below.
 							</Typography>
 						)}
 
@@ -73,7 +61,7 @@ export default function FollowUp() {
 								onClick={() => arrayHelpers.push('')}
 							>
 								{/* show this when user has removed all friends from the list */}
-								Add new Follow Up
+								Add Assessment
 							</Button>
 						</div>
 					</div>

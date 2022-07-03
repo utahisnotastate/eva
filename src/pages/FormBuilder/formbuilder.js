@@ -6,6 +6,7 @@ import EVAPreviewFormDialog from '../../components/ui/EVAPreviewFormDialog'
 import { TextField, Select } from 'formik-mui'
 import DynamicEditField from './FormFieldsEditor/DynamicEditField'
 import { Formik, Form, Field, FieldArray } from 'formik'
+import FormPreview from './FormPreview'
 
 export default function EVAFormBuilder() {
 	const formbuilder = useSelector((state) => state.formbuilder)
@@ -170,9 +171,7 @@ export default function EVAFormBuilder() {
 							</div>
 						)}
 					/>
-					<EVAPreviewFormDialog
-						openDialogButtonText={`Preview Form`}
-					></EVAPreviewFormDialog>
+					<FormPreview form={values} />
 				</Form>
 			)}
 		</Formik>

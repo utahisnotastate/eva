@@ -9,11 +9,11 @@ export default function FollowUp() {
 	return (
 		<div>
 			<FieldArray
-				name="follwups"
+				name="followups"
 				render={(arrayHelpers) => (
 					<div>
-						{values.follwups && values.follwups.length > 0 ? (
-							values.follwups.map((followup, index) => (
+						{values.followups && values.followups.length > 0 ? (
+							values.followups.map((followup, index) => (
 								<div
 									key={index}
 									style={{
@@ -24,7 +24,7 @@ export default function FollowUp() {
 								>
 									<Field
 										component={TextField}
-										name={`follwups.${index}.type`}
+										name={`followups.${index}.type`}
 										label="Type"
 										fullWidth
 										InputLabelProps={{ shrink: true }}
@@ -32,7 +32,7 @@ export default function FollowUp() {
 									/>
 									<Field
 										component={TextField}
-										name={`follwups.${index}.provider_follow_up`}
+										name={`followups.${index}.provider_follow_up`}
 										label="Followup Instructions for Providers"
 										fullWidth
 										multiline
@@ -42,7 +42,7 @@ export default function FollowUp() {
 									/>
 									<Field
 										component={TextField}
-										name={`follwups.${index}.patient_follow_up`}
+										name={`followups.${index}.patient_follow_up`}
 										label="Followup Instructions for Patients"
 										fullWidth
 										multiline

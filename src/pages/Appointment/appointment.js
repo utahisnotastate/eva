@@ -28,10 +28,10 @@ export default function Appointment() {
 					initialValues={{
 						preappointment: '',
 						complaints: ['neck pain', 'headache'],
-						physicalexams: [],
+						physicalexam: [],
 						reviewofsystems: [],
 						assessments: [],
-						follwups: [],
+						followups: [],
 						summary: '',
 					}}
 					onSubmit={(values) => {

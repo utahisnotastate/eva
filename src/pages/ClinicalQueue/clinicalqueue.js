@@ -3,7 +3,7 @@ import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew'
 import CustomTabs from '../../components/ui/CustomTabs/CustomTabs'
 //import MaterialTable from 'material-table'
 
-export default function ClinicalQueue() {
+export default function ClinicalQueue({ appointments }) {
 	const queuetabs = [
 		{
 			tabName: 'Upcoming',

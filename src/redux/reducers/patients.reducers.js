@@ -33,3 +33,12 @@ export function requests(state = [], action) {
 			return state
 	}
 }
+
+export function providers(state = [], action) {
+	switch (action.type) {
+		case 'LOAD_PROVIDERS':
+			return action.providers
+		default:
+			return state
+	}
+}

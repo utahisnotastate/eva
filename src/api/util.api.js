@@ -3,7 +3,6 @@ import API_URL from './api_url'
 
 export const evaAPIGetAll = async (route) => {
 	const getAll = await axios.get(`${API_URL}/${route}/`)
-	console.log(getAll.data)
 	return getAll.data
 }
 export const evaAPIGetItem = async (route, id) => {

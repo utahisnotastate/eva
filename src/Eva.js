@@ -55,12 +55,36 @@ function Eva() {
 	// <Route element={<Patient />} exact path="/patients/:id" />
 	//const [patients, setPatients] = useState([])
 	const patients = useSelector((state) => state.patients)
+
+	/* TODO merge all these to promise.all or move to seperate file */
 	useEffect(() => {
 		evaAPIGetAll('patients').then((patients) => {
 			console.log(patients)
 			dispatch({ type: 'LOAD_PATIENTS', patients })
 		})
 	}, [])
+
+	useEffect(() => {
+		evaAPIGetAll('appointments').then((appointments) => {
+			console.log(appointments)
+			dispatch({ type: 'LOAD_APPOINTMENTS', appointments })
+		})
+	}, [])
+
+	useEffect(() => {
+		evaAPIGetAll('requests').then((requests) => {
+			console.log(requests)
+			dispatch({ type: 'LOAD_REQUESTS', requests })
+		})
+	}, [])
+
+	useEffect(() => {
+		evaAPIGetAll('providers').then((providers) => {
+			console.log(providers)
+			dispatch({ type: 'LOAD_PROVIDERS', providers })
+		})
+	}, [])
+
 	return (
 		<BrowserRouter>
 			<EVALayout navlinks={navlinks}>

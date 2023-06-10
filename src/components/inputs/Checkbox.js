@@ -1,7 +1,6 @@
 import React from 'react'
 import { Field } from 'formik'
 import { CheckboxWithLabel } from 'formik-mui'
-import { FormControl, FormHelperText } from '@mui/material'
 
 export default function EVACheckBoxAndLabel({
 	name,

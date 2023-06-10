@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import API_URL from '../../api/api_url'
+import React, { Fragment, useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import {
@@ -9,17 +7,54 @@ import {
 	Views,
 } from 'react-big-calendar'
 import moment from 'moment'
-import { Grid, Card, CardContent } from '@material-ui/core'
+import {
+	Button,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogTitle,
+	Fab,
+	Grid,
+	Card,
+	CardContent,
+} from '@material-ui/core'
 
+import { useModal } from 'react-modal-hook'
 import AppointmentScheduleEvent from './Day/Appointment/appointmentscheduleevent'
+import ScheduleAppointmentModal from './ScheduleAppointmentModal/scheduleappointmentmodal'
+//import '../basestyledcomponents/scss/material-dashboard-pro-react.scss'
 
 var toDate = require('@fav/type.to-date')
 
 const localizer = momentLocalizer(moment)
 
+const API_URL = 'http://127.0.0.1:8000/api'
+
 export default function Scheduling() {
 	let { id } = useParams()
-	const providers = useSelector((state) => state.providers)
+	// const [appointmentcreated, setAppointmentCreated] = useState(false);
+
+	// gets new appointments after appointment has been scheduled
+	async function getNewAppointments() {
+		const result = await axios(`${API_URL}/appointments`)
+		// console.log(result.data);
+		let appointments = result.data
+		let convertedappointments = []
+		appointments.forEach((appointment) => {
+			let newstart = toDate.RFC3339(appointment.start)
+			let newend = toDate.RFC3339(appointment.end)
+			let resourceId = appointment.provider
+			// console.log(appointment.provider);
+			// console.log({...appointment, ...{start: newstart, end: newend, resourceId: resourceId}})
+			convertedappointments.push({
+				...appointment,
+				...{ start: newstart, end: newend, resourceId: resourceId },
+			})
+		})
+		setAppointments(convertedappointments)
+		console.log(appointments)
+	}
+	// handles create new patient form
 	const onSubmit = (data) => {
 		console.log('Resource Id ' + slottoschedule.resourceId)
 		console.log(data)
@@ -75,6 +110,17 @@ export default function Scheduling() {
 		},
 		[slottoschedule],
 	)*/
+
+	useEffect(() => {
+		// gets providers
+		const fetchData = async () => {
+			const result = await axios(`${API_URL}/providers`)
+			console.log(result)
+			setResources([...result.data])
+		}
+		fetchData()
+	}, [])
+
 	useEffect(() => {
 		//gets appointments on mount
 		const fetchData = async () => {
@@ -135,7 +181,7 @@ export default function Scheduling() {
 		<Grid container justifyContent="center">
 			<Grid item md={10} sm={12} xs={12}>
 				<Card>
-					<CardContent>
+					<CardContent calendar>
 						<BigCalendar
 							components={calendercomponents}
 							defaultDate={new Date()}
@@ -150,11 +196,8 @@ export default function Scheduling() {
 							onSelectSlot={handleSelect}
 							onView={(view) => console.log('View is ' + view)}
 							resourceIdAccessor={(resource) => resource.id}
-							//resourceTitleAccessor="last_name"
-							resourceTitleAccessor={(resource) =>
-								`${resource.title}. ${resource.first_name} ${resource.last_name}`
-							}
-							resources={providers}
+							resourceTitleAccessor="display_name"
+							resources={resources}
 							scrollToTime={new Date(1970, 1, 1, 6)}
 							selectable
 							titleAccessor="type"

@@ -14,7 +14,6 @@ import EVALayout from './components/ui/layout/layout'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './App.css'
 import Patient from './pages/Patient/patient'
-//import Patient from '../src/pages/Patient/migration/patient'
 
 function Eva() {
 	const dispatch = useDispatch()
@@ -90,7 +89,10 @@ function Eva() {
 			<EVALayout navlinks={navlinks}>
 				<Routes>
 					<Route element={<Home />} path="/" />
-					<Route element={<Patients patients={patients} />} path="/patients" />
+					<Route
+						element={<Patients patients={patients} />}
+						path="/patients"
+					/>
 					<Route element={<Appointment />} path="/appointments" />
 					<Route element={<ClinicalQueue />} path="/clinicalqueue" />
 					<Route element={<Patient />} exact path="/patients/:id" />
